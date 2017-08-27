@@ -29,3 +29,12 @@ $factory->define(\App\Account::class, function (\Faker\Generator $faker) {
         'owner_id' => factory(\App\User::class)->create()->id,
     ];
 });
+
+$factory->define(\App\Operation::class, function (\Faker\Generator $faker) {
+    return [
+        'user_id' => $faker->uuid,
+        'type' => 'receipt',
+        'amount' => $faker->numberBetween(0, 1000),
+        'operation_date' => \Carbon\Carbon::now(),
+    ];
+});
