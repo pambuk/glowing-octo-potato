@@ -40,4 +40,15 @@ class OperationService
 
         return $this;
     }
+
+    public function create($data)
+    {
+        $operation = new Operation();
+        $operation->fill($data);
+//        $operation->user_id = \Auth::user()->id;
+//        $operation->description = $request->input('description') ?: ucfirst($request->input('type'));
+        $operation->save();
+
+        return $operation;
+    }
 }

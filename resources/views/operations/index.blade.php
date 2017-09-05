@@ -2,7 +2,13 @@
 
 @section('content')
     <div class="container">
-        <h1>Operations</h1>
+        <h1>
+            Operations
+
+            <a href="/operations/create" type="button" class="btn btn-default" aria-label="Left Align">
+                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add
+            </a>
+        </h1>
 
         <table class="table table-striped">
             <tr>
