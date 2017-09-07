@@ -18,7 +18,11 @@
             </tr>
             @foreach($operations as $operation)
                 <tr>
-                    <td>{{ $operation->description }}</td>
+                    <td>
+                        <a href="{{ route('operations.show', ['operation' => $operation->id]) }}">
+                            {{ $operation->description }}
+                        </a>
+                    </td>
                     <td>{{ $operation->type }}</td>
                     <td style="text-align: right">{{ $operation->amount }}</td>
                 </tr>
