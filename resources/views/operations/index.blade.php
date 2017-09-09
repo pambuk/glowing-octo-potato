@@ -10,6 +10,19 @@
             </a>
         </h1>
 
+        <div class="row">
+            <span class="col-lg-10">
+                <a href="{{ route('operations.index', ['date' => $prevMonth->format('Ym')]) }}">
+                    &lt; {{ $prevMonth->format('F Y') }}
+                </a>
+            </span>
+            <span class="col-lg-2" style="text-align: right">
+                <a href="{{ route('operations.index', ['date' => $nextMonth->format('Ym')]) }}">
+                    {{ $nextMonth->format('F Y') }} &gt;
+                </a>
+            </span>
+        </div>
+
         <table class="table table-striped">
             <tr>
                 <th>Description</th>

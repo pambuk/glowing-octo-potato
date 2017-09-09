@@ -11,6 +11,7 @@ class Operation extends Model
     public const TYPE_EXPENSE = 'expense';
 
     protected $fillable = ['user_id', 'amount', 'operation_date', 'type', 'description', ];
+    protected $dates = ['operation_date'];
 
     public function getAmountAttribute($value)
     {

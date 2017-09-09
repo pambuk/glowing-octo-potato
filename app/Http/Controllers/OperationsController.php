@@ -10,18 +10,21 @@ use Illuminate\Http\Request;
 
 class OperationsController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $now = Carbon::now();
+        $date = Carbon::now();
+        if ($request->input('date')) {
+            $date = Carbon::createFromFormat('Ym', $request->input('date'));
+            $nextMonth = $date->copy()->addMonth();
+            $prevMonth = $date->copy()->subMonth();
+        }
 
         $operations = (new OperationService())
             ->byUser(\Auth::user())
-            ->byMonth($now)
+            ->byMonth($date)
             ->get();
 
-        return view('operations.index', [
-            'operations' => $operations,
-        ]);
+        return view('operations.index', compact('operations', 'nextMonth', 'prevMonth'));
     }
 
     public function create()
