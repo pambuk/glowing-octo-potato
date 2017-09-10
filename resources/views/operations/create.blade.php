@@ -32,6 +32,13 @@
                         ])
                         @include('form.input', ['label' => 'Description', 'name' => 'description', 'value' => $description ?? ''])
 
+                        <hr />
+
+                        @include('form.select', [
+                            'label' => 'Operation source', 'name' => 'operation_source_id', 'options' => $operationSourceOptions,
+                            'selected' => old('operation_source_id') ?? $operation_source_id ?? ''
+                        ])
+
                         <button type="submit" class="btn btn-default">
                             @if(isset($id))
                                 Update

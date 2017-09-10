@@ -10,7 +10,7 @@ class Operation extends Model
     public const TYPE_INCOME = 'income';
     public const TYPE_EXPENSE = 'expense';
 
-    protected $fillable = ['user_id', 'amount', 'operation_date', 'type', 'description', ];
+    protected $fillable = ['user_id', 'amount', 'operation_date', 'type', 'description', 'operation_source_id', ];
     protected $dates = ['operation_date'];
 
     public function getAmountAttribute($value)
@@ -26,6 +26,11 @@ class Operation extends Model
             $value = abs($value);
         }
 
-        $this->attributes['amount'] = (int) ($value * 100);
+        $this->attributes['amount'] = $value * 100;
+    }
+
+    public function operationSource()
+    {
+        return $this->hasOne(OperationSource::class);
     }
 }

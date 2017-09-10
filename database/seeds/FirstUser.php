@@ -14,7 +14,7 @@ class FirstUser extends Seeder
         factory(\App\User::class)->create([
             'email' => 'wojtek.zymonik@gmail.com',
             'name' => 'Wojtek',
-            'password' => 123123,
+            'password' => bcrypt(123123),
         ]);
     }
 }

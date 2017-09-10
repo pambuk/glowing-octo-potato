@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\OperationCreate;
 use App\Operation;
+use App\OperationSource;
 use App\Services\OperationService;
+use App\Services\OperationSourceService;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
 class OperationsController extends Controller
@@ -30,7 +33,8 @@ class OperationsController extends Controller
 
     public function create()
     {
-        return view('operations.create');
+        $sources = $this->getOperationSourceOptions();
+        return view('operations.create', ['operationSourceOptions' => $sources]);
     }
 
     public function store(OperationCreate $request)
@@ -45,7 +49,9 @@ class OperationsController extends Controller
 
     public function show(Operation $operation)
     {
-        return view('operations.create', $operation->toArray());
+        $sources = $this->getOperationSourceOptions();
+        return view('operations.create',
+            array_merge($operation->toArray(), ['operationSourceOptions' => $sources->toArray()]));
     }
 
     public function update(OperationCreate $request, Operation $operation)
@@ -54,5 +60,18 @@ class OperationsController extends Controller
         $operation->save();
 
         return redirect(route('operations.show', ['operation' => $operation->id]));
+    }
+
+    /**
+     * @return Collection
+     */
+    private function getOperationSourceOptions(): Collection
+    {
+        return (new OperationSourceService())->get()->transform(function (OperationSource $item) {
+            return [
+                'value' => $item->id,
+                'label' => $item->name,
+            ];
+        });
     }
 }

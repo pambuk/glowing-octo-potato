@@ -2,12 +2,9 @@
 
 namespace App\Services;
 
-
 use App\Operation;
 use App\User;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
 
 class OperationService
 {
@@ -41,12 +38,10 @@ class OperationService
         return $this;
     }
 
-    public function create($data)
+    public function create($data): Operation
     {
         $operation = new Operation();
         $operation->fill($data);
-//        $operation->user_id = \Auth::user()->id;
-//        $operation->description = $request->input('description') ?: ucfirst($request->input('type'));
         $operation->save();
 
         return $operation;
