@@ -15,16 +15,17 @@ class OperationsController extends Controller
         $date = Carbon::now();
         if ($request->input('date')) {
             $date = Carbon::createFromFormat('Ym', $request->input('date'));
-            $nextMonth = $date->copy()->addMonth();
-            $prevMonth = $date->copy()->subMonth();
         }
+
+        $nextMonth = $date->copy()->addMonth();
+        $prevMonth = $date->copy()->subMonth();
 
         $operations = (new OperationService())
             ->byUser(\Auth::user())
             ->byMonth($date)
             ->get();
 
-        return view('operations.index', compact('operations', 'nextMonth', 'prevMonth'));
+        return view('operations.index', compact('operations', 'nextMonth', 'prevMonth', 'date'));
     }
 
     public function create()

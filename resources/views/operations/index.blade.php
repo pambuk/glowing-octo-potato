@@ -3,9 +3,9 @@
 @section('content')
     <div class="container">
         <h1>
-            Operations
+            Operations for {{ $date->format('F Y') }}
 
-            <a href="/operations/create" type="button" class="btn btn-default" aria-label="Left Align">
+            <a href="/operations/create" type="button" class="btn btn-default pull-right" aria-label="Left Align">
                 <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add
             </a>
         </h1>
