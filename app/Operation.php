@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Operation extends Model
@@ -11,7 +12,7 @@ class Operation extends Model
     public const TYPE_EXPENSE = 'expense';
 
     protected $fillable = ['user_id', 'amount', 'operation_date', 'type', 'description', 'operation_source_id', ];
-    protected $dates = ['operation_date'];
+    protected $dates = ['created_at', 'updated_at', 'operation_date'];
 
     public function getAmountAttribute($value)
     {
@@ -27,6 +28,11 @@ class Operation extends Model
         }
 
         $this->attributes['amount'] = $value * 100;
+    }
+
+    public function getOperationDateAttribute($value)
+    {
+        return (new Carbon($value))->format('Y-m-d');
     }
 
     public function operationSource()
