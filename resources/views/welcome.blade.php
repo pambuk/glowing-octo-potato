@@ -79,15 +79,11 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Glowing Octo Potato
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <a href="https://kanbanflow.com/board/576607c53a2598c6528e14e2d7d6023d" target="_blank">Board</a>
                 </div>
             </div>
         </div>

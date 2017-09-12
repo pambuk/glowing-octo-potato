@@ -18,3 +18,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('operations', 'OperationsController@index')->name('operations.index');
+    Route::get('operations/create', 'OperationsController@create')->name('operations.create');
+    Route::post('operations/create', 'OperationsController@store')->name('operations.store');
+    Route::get('operations/show/{operation}', 'OperationsController@show')->name('operations.show');
+    Route::put('operations/update/{operation}', 'OperationsController@update')->name('operations.update');
+});
