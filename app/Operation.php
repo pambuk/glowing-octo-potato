@@ -37,6 +37,6 @@ class Operation extends Model
 
     public function operationSource()
     {
-        return $this->hasOne(OperationSource::class);
+        return $this->hasOne(OperationSource::class, 'id');
     }
 }
