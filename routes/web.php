@@ -24,4 +24,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('operations/create', 'OperationsController@store')->name('operations.store');
     Route::get('operations/show/{operation}', 'OperationsController@show')->name('operations.show');
     Route::put('operations/update/{operation}', 'OperationsController@update')->name('operations.update');
+
+    Route::get('operation-items/{operation}', 'OperationItemsController@index')->name('operation-items.index');
+    Route::resource('operation-items', 'OperationItemsController');
 });

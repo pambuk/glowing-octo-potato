@@ -24,7 +24,7 @@
                             ['label' => 'Expense', 'value' => \App\Operation::TYPE_EXPENSE],
                             ['label' => 'Income', 'value' => \App\Operation::TYPE_INCOME],
                         ]])
-                        @include('form.input', ['label' => 'Amount', 'name' => 'amount', 'required' => true, 'value' => $amount ?? null])
+                        @include('form.input', ['label' => 'Amount', 'name' => 'value', 'required' => true, 'value' => $value ?? null])
                         @include('form.input', [
                             'label' => 'Date', 'name' => 'operation_date',
                             'value' => $operation_date ?? \Carbon\Carbon::now()->toDateString(),

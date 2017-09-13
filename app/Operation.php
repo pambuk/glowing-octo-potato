@@ -39,4 +39,9 @@ class Operation extends Model
     {
         return $this->hasOne(OperationSource::class, 'id');
     }
+
+    public function items()
+    {
+        return $this->hasMany(OperationItem::class);
+    }
 }
