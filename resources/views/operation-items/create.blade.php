@@ -49,12 +49,11 @@
             </form>
     </div>
 
-    @if (isset($id))
     <div class="col-lg-5">
         <h1>
             Items
 
-            <a href="/operation-items/{{ $id }}/index" type="button" class="btn btn-default pull-right" aria-label="Right Align">
+            <a href="/operation-items/{{ $id }}/create" type="button" class="btn btn-default pull-right" aria-label="Right Align">
                 <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add
             </a>
         </h1>
@@ -71,5 +70,4 @@
             @endforeach
         </table>
     </div>
-    @endif
 @endsection
