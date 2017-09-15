@@ -27,12 +27,6 @@ class Operation extends Model
             $value *= -1;
         }
 
-//        if ($this->type !== self::TYPE_INCOME && $value > 0) {
-//            $value *= -1;
-//        } else {
-//            $value = abs($value);
-//        }
-
         $this->attributes['value'] = $value * 100;
     }
 
