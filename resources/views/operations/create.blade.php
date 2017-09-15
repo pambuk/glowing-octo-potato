@@ -13,39 +13,55 @@
         @if(isset($id))
             <form method="post" action="{{ route('operations.update', ['operation' => $id]) }}">
                 {{ method_field('PUT') }}
-                @else
-                    <form method="post">
-                        @endif
+        @else
+            <form method="post">
+        @endif
 
-                        {{ csrf_field() }}
+                {{ csrf_field() }}
 
-                        @include('form.radio', ['name' => 'type', 'required' => true, 'selected' => old('type') ?? $type ?? '', 'options' => [
-                            ['label' => 'Receipt', 'value' => \App\Operation::TYPE_RECEIPT],
-                            ['label' => 'Expense', 'value' => \App\Operation::TYPE_EXPENSE],
-                            ['label' => 'Income', 'value' => \App\Operation::TYPE_INCOME],
-                        ]])
-                        @include('form.input', ['label' => 'Amount', 'name' => 'value', 'required' => true, 'value' => $value ?? null])
-                        @include('form.input', [
-                            'label' => 'Date', 'name' => 'operation_date',
-                            'value' => $operation_date ?? \Carbon\Carbon::now()->toDateString(),
-                            'type' => 'date',
-                        ])
-                        @include('form.input', ['label' => 'Description', 'name' => 'description', 'value' => $description ?? ''])
+                @include('form.radio', ['name' => 'type', 'required' => true, 'selected' => old('type') ?? $type ?? '', 'options' => [
+                    ['label' => 'Receipt', 'value' => \App\Operation::TYPE_RECEIPT],
+                    ['label' => 'Expense', 'value' => \App\Operation::TYPE_EXPENSE],
+                    ['label' => 'Income', 'value' => \App\Operation::TYPE_INCOME],
+                ]])
+                @include('form.input', ['label' => 'Amount', 'name' => 'value', 'required' => true, 'value' => $value ?? null])
+                @include('form.input', [
+                    'label' => 'Date', 'name' => 'operation_date',
+                    'value' => $operation_date ?? \Carbon\Carbon::now()->toDateString(),
+                    'type' => 'date',
+                ])
+                @include('form.input', ['label' => 'Description', 'name' => 'description', 'value' => $description ?? ''])
 
-                        <hr />
+                <hr/>
 
-                        @include('form.select', [
-                            'label' => 'Operation source', 'name' => 'operation_source_id', 'options' => $operationSourceOptions,
-                            'selected' => old('operation_source_id') ?? $operation_source_id ?? ''
-                        ])
+                @include('form.select', [
+                    'label' => 'Operation source', 'name' => 'operation_source_id', 'options' => $operationSourceOptions,
+                    'selected' => old('operation_source_id') ?? $operation_source_id ?? ''
+                ])
 
-                        <button type="submit" class="btn btn-default">
-                            @if(isset($id))
-                                Update
-                            @else
-                                Add
-                            @endif
-                        </button>
-                    </form>
+                <button type="submit" class="btn btn-default">
+                    @if(isset($id))
+                        Update
+                    @else
+                        Add
+                    @endif
+                </button>
+            </form>
     </div>
+
+    {{--<div class="col-lg-5">--}}
+        {{--<h1>Items</h1>--}}
+        {{--<table class="table">--}}
+            {{--<tr>--}}
+                {{--<th>Description</th>--}}
+                {{--<th>Amount</th>--}}
+            {{--</tr>--}}
+            {{--@foreach($items as $item)--}}
+            {{--<tr>--}}
+                {{--<td>{{ $item->description }}</td>--}}
+                {{--<td>{{ $item->value }}</td>--}}
+            {{--</tr>--}}
+            {{--@endforeach--}}
+        {{--</table>--}}
+    {{--</div>--}}
 @endsection

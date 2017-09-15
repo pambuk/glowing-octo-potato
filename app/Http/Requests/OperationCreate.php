@@ -15,7 +15,7 @@ class OperationCreate extends FormRequest
     {
         return [
             'type' => 'required',
-            'amount' => 'required|numeric',
+            'value' => 'required|numeric',
             'operation_source_id' => 'sometimes|exists:operation_sources,id',
         ];
     }

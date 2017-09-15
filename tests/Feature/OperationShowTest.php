@@ -27,7 +27,7 @@ class OperationShowTest extends TestCase
         $this->be($user);
         $this
             ->get(route('operations.show', ['operation' => $operation->id]))
-            ->assertSee($operation->amount)
+            ->assertSee($operation->value)
             ->assertSee($operation->description)
             ->assertSee($operation->operation_date)
             ->assertSee($operation->operationSource->name);
