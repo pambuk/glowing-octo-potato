@@ -1,14 +1,10 @@
 <?php
 namespace App;
 
-/**
- * Class Weight
- * @package App
- */
-class Weight
+class Volume
 {
     protected $data;
-    protected static $units = ['g', 'kg', 'dg', 'deko'];
+    protected static $units = ['l', 'ml'];
     protected $rule;
     protected $matches;
 
@@ -25,7 +21,7 @@ class Weight
             in_array($this->matches[2], self::$units, true);
     }
 
-    public function get(): int
+    public function get(): float
     {
         return $this->convert($this->matches[1]);
     }
@@ -35,15 +31,11 @@ class Weight
         return $this->matches[2];
     }
 
-    private function convert($data): int
+    private function convert($data): float
     {
         switch ($this->getUnit()) {
-            case 'kg':
-                $data *= 1000;
-                break;
-            case 'dg':
-            case 'deko':
-                $data *= 10;
+            case 'ml':
+                $data /= 1000;
                 break;
         }
 
