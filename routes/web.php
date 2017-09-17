@@ -25,7 +25,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('operations/show/{operation}', 'OperationsController@show')->name('operations.show');
     Route::put('operations/update/{operation}', 'OperationsController@update')->name('operations.update');
 
-    Route::get('operation-items/{operation}', 'OperationItemsController@index')->name('operation-items.index');
-    Route::get('operation-items/{operation}/index', 'OperationItemsController@index');
-    Route::resource('operation-items', 'OperationItemsController');
+//    Route::get('operation-items/{operation}', 'OperationItemsController@index')->name('operation-items.index');
+    Route::get('operation-items/{operation}/index', 'OperationItemsController@index')->name('operation-items.index');
+    Route::post('operation-items/{operation}/store', 'OperationItemsController@store')->name('operation-items.store');
+    Route::get('operation-items/{operation}/delete/{item}',
+        'OperationItemsController@destroy')->name('operation-items.destroy');
 });

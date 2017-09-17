@@ -58,18 +58,9 @@
                 <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add
             </a>
         </h1>
-        <table class="table">
-            <tr>
-                <th>Description</th>
-                <th>Amount</th>
-            </tr>
-            @foreach($items as $item)
-            <tr>
-                <td>{{ $item['description'] }}</td>
-                <td>{{ $item['value'] }}</td>
-            </tr>
-            @endforeach
-        </table>
+
+        @include('operation-items.list')
+
     </div>
     @endif
 @endsection

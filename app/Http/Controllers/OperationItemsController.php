@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Operation;
+use App\OperationItem;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class OperationItemsController extends Controller
@@ -10,11 +12,12 @@ class OperationItemsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param Operation $operation
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(Operation $operation)
     {
-        dd($operation->items);
+        return view('operation-items.index', compact('operation'));
     }
 
     /**
@@ -30,7 +33,7 @@ class OperationItemsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -41,7 +44,7 @@ class OperationItemsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -52,7 +55,7 @@ class OperationItemsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -63,8 +66,8 @@ class OperationItemsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -75,11 +78,18 @@ class OperationItemsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Operation $operation
+     * @param OperationItem $item
+     * @return RedirectResponse
+     * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(Operation $operation, OperationItem $item): RedirectResponse
     {
-        //
+        /** @var OperationItem $item */
+        if ($item->operation_id === $operation->id && $operation->user_id === \Auth::user()->id) {
+            $item->delete();
+        }
+
+        return redirect()->back();
     }
 }
