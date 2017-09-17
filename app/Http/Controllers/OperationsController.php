@@ -49,9 +49,12 @@ class OperationsController extends Controller
 
     public function show(Operation $operation)
     {
+        $operation->load('items');
         $sources = $this->getOperationSourceOptions();
-        return view('operations.create',
-            array_merge($operation->toArray(), ['operationSourceOptions' => $sources->toArray()]));
+
+        return view('operations.create', array_merge(
+            $operation->toArray(), ['operationSourceOptions' => $sources->toArray()])
+        );
     }
 
     public function update(OperationCreate $request, Operation $operation)

@@ -19,7 +19,7 @@ class CreateOperationsTable extends Migration
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
 
-            $table->integer('amount')->default(0);
+            $table->integer('value')->default(0);
             $table->date('operation_date');
             $table->enum('type', ['receipt', 'income', 'expense']);
             $table->string('description')->nullable();

@@ -37,13 +37,13 @@
                         </a>
                     </td>
                     <td>{{ $operation->type }}</td>
-                    <td style="text-align: right">{{ $operation->amount }}</td>
+                    <td style="text-align: right">{{ $operation->value }}</td>
                 </tr>
             @endforeach
             <tr>
                 <td><strong>Total: </strong></td>
                 <td colspan="2" style="text-align: right">
-                    <strong>{{ number_format($operations->sum('amount'), 2) }}</strong>
+                    <strong>{{ number_format($operations->sum('value'), 2) }}</strong>
                 </td>
             </tr>
         </table>
