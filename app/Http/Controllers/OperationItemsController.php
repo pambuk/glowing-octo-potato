@@ -42,6 +42,9 @@ class OperationItemsController extends Controller
     {
         $item = OperationItem::create($request->validated());
         $operation->items()->save($item);
+
+        // @todo sum items and update operation
+
         return redirect(route('operation-items.index', ['operation' => $operation]));
     }
 
