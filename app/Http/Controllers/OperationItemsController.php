@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OperationItemCreate;
 use App\Operation;
 use App\OperationItem;
 use Illuminate\Http\RedirectResponse;
@@ -33,12 +34,15 @@ class OperationItemsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param Operation $operation
+     * @param OperationItemCreate $request
+     * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(Operation $operation, OperationItemCreate $request): RedirectResponse
     {
-        //
+        $item = OperationItem::create($request->validated());
+        $operation->items()->save($item);
+        return redirect(route('operation-items.index', ['operation' => $operation]));
     }
 
     /**
@@ -86,10 +90,20 @@ class OperationItemsController extends Controller
     public function destroy(Operation $operation, OperationItem $item): RedirectResponse
     {
         /** @var OperationItem $item */
-        if ($item->operation_id === $operation->id && $operation->user_id === \Auth::user()->id) {
+        if ($this->canBeDestroyed($operation, $item)) {
             $item->delete();
         }
 
         return redirect()->back();
+    }
+
+    /**
+     * @param Operation $operation
+     * @param OperationItem $item
+     * @return bool
+     */
+    private function canBeDestroyed(Operation $operation, OperationItem $item): bool
+    {
+        return $item->operation_id === $operation->id && $operation->user_id === \Auth::user()->id;
     }
 }

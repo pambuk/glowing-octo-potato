@@ -6,7 +6,7 @@
 
         @include('form.errors')
 
-        <form method="post">
+        <form method="post" action="{{ route('operation-items.store', ['operation' => $operation]) }}">
 
             {{ csrf_field() }}
 
