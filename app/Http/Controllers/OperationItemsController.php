@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\OperationItemCreate;
 use App\Operation;
 use App\OperationItem;
+use App\Volume;
+use App\Weight;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
@@ -40,7 +42,8 @@ class OperationItemsController extends Controller
      */
     public function store(Operation $operation, OperationItemCreate $request): RedirectResponse
     {
-        $item = OperationItem::create($request->validated());
+        $item = OperationItem::make($request->validated());
+        $this->addVolumeWeight($item, $request->input('volume_weight'));
         $operation->items()->save($item);
 
         // @todo sum items and update operation
@@ -108,5 +111,20 @@ class OperationItemsController extends Controller
     private function canBeDestroyed(Operation $operation, OperationItem $item): bool
     {
         return $item->operation_id === $operation->id && $operation->user_id === \Auth::user()->id;
+    }
+
+    private function addVolumeWeight(OperationItem $item, ?string $input): void
+    {
+        if (null !== $input) {
+            $weight = new Weight($input);
+            if ($weight->isValid()) {
+                $item->weight = $weight->get();
+            }
+
+            $volume = new Volume($input);
+            if ($volume->isValid()) {
+                $item->volume = $volume->get();
+            }
+        }
     }
 }

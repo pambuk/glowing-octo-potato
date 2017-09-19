@@ -12,4 +12,14 @@ class OperationItem extends Model
     {
         return $this->belongsTo(Operation::class, 'operation_item_id');
     }
+
+    public function getValueAttribute($value)
+    {
+        return number_format($value / 100, 2, '.', '');
+    }
+
+    public function setValueAttribute($value)
+    {
+        $this->attributes['value'] = $value * 100;
+    }
 }
