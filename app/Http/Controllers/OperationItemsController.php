@@ -9,6 +9,7 @@ use App\Volume;
 use App\Weight;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class OperationItemsController extends Controller
 {
@@ -16,7 +17,7 @@ class OperationItemsController extends Controller
      * Display a listing of the resource.
      *
      * @param Operation $operation
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Contracts\View\Factory|View
      */
     public function index(Operation $operation)
     {
@@ -64,13 +65,13 @@ class OperationItemsController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
+     * @param Operation $operation
+     * @param OperationItem $item
+     * @return View
      */
-    public function edit($id)
+    public function edit(Operation $operation, OperationItem $item): View
     {
-        //
+        return view('operation-items.edit', compact('operation', 'item'));
     }
 
     /**

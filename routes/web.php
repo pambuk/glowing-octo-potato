@@ -31,4 +31,5 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('operation-items/{operation}/store', 'OperationItemsController@store')->name('operation-items.store');
     Route::get('operation-items/{operation}/delete/{item}',
         'OperationItemsController@destroy')->name('operation-items.destroy');
+    Route::get('operation-item/{operation}/edit/{item}', 'OperationItemsController@edit')->name('operation-items.edit');
 });

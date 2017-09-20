@@ -6,7 +6,11 @@
     </tr>
     @foreach($items as $item)
         <tr>
-            <td>{{ $item['description'] }}</td>
+            <td>
+                <a href="{{ route('operation-items.edit', ['operation' => $item['operation_id'], 'item' => $item['id']]) }}">
+                    {{ $item['description'] }}
+                </a>
+            </td>
             <td>{{ $item['value'] }}</td>
             <td>
                 <button
