@@ -10,7 +10,7 @@
 
             {{ csrf_field() }}
 
-            @include('operation-items.inputs')
+            @include('operation-items.inputs-create')
 
             <button type="submit" class="btn btn-default">Add</button>
         </form>

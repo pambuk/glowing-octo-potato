@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class OperationItem extends Model
 {
     protected $fillable = ['operation_id', 'description', 'value', 'volume', 'weight', 'quantity',];
+    protected $appends = ['volume_weight'];
 
     public function operation()
     {
@@ -21,5 +22,20 @@ class OperationItem extends Model
     public function setValueAttribute($value)
     {
         $this->attributes['value'] = $value * 100;
+    }
+
+    public function getVolumeWeightAttribute()
+    {
+        // @todo add WeightDisplay, VolumeDisplay
+
+//        $weight = new Weight($this->weight);
+//        if ($weight->isValid()) {
+//            return $weight->get();
+//        }
+//
+//        $volume = new Volume($this->volume);
+//        if ($volume->isValid()) {
+//            return $volume->get();
+//        }
     }
 }

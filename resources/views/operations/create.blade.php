@@ -1,6 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
+    <div class="container col-lg-11 col-lg-offset-1">
+        <ol class="breadcrumb">
+            <li><a href="{{ route('operations.index') }}">Operations</a></li>
+            <li class="active">Edit operation</li>
+        </ol>
+    </div>
+
     <div class="container col-lg-6 col-lg-offset-1">
         @if(isset($id))
             <h1>Edit operation</h1>

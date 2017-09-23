@@ -71,6 +71,8 @@ class OperationItemsController extends Controller
      */
     public function edit(Operation $operation, OperationItem $item): View
     {
+//dd($item->volume_weight);
+
         return view('operation-items.edit', compact('operation', 'item'));
     }
 
