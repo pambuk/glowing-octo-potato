@@ -28,6 +28,7 @@
                 <th>Description</th>
                 <th>Type</th>
                 <th style="text-align: right">Amount</th>
+                <th>Options</th>
             </tr>
             @foreach($operations as $operation)
                 <tr>
@@ -38,6 +39,14 @@
                     </td>
                     <td>{{ $operation->type }}</td>
                     <td style="text-align: right">{{ $operation->value }}</td>
+                    <td>
+                        <button
+                                class="btn btn-sm"
+                                @click.prevent="confirmAction('/operations/delete/{{ $operation->id }}')"
+                                style="cursor: pointer">
+                            <i class="glyphicon glyphicon-trash"></i>
+                        </button>
+                    </td>
                 </tr>
             @endforeach
             <tr>

@@ -10,10 +10,7 @@
 
             {{ csrf_field() }}
 
-            <input type="hidden" name="operation_id" value="{{ $operation->id }}" />
-
-            @include('form.input', ['label' => 'Amount', 'name' => 'value', 'required' => true, 'value' => old('value')])
-            @include('form.input', ['label' => 'Description', 'name' => 'description', 'value' => old('description'),])
+            @include('operation-items.inputs-create')
 
             <button type="submit" class="btn btn-default">Add</button>
         </form>

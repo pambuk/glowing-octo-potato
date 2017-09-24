@@ -65,6 +65,15 @@ class OperationsController extends Controller
         return redirect(route('operations.show', ['operation' => $operation->id]));
     }
 
+    public function destroy(Operation $operation)
+    {
+        if ($operation->user_id === \Auth::user()->id) {
+            $operation->delete();
+        }
+
+        return redirect(route('operations.index'));
+    }
+
     /**
      * @return Collection
      */

@@ -17,7 +17,7 @@ class CreateOperationItemsTable extends Migration
             $table->increments('id');
 
             $table->unsignedInteger('operation_id');
-            $table->foreign('operation_id')->references('id')->on('operations');
+            $table->foreign('operation_id')->references('id')->on('operations')->onDelete('cascade');
 
             $table->string('description');
             $table->integer('value')->default(0);
