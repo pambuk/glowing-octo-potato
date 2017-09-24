@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\Weight;
+use App\Items\Weight;
 use Tests\TestCase;
 
 class WeightTest extends TestCase

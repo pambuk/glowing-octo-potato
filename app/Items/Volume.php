@@ -1,5 +1,5 @@
 <?php
-namespace App;
+namespace App\Items;
 
 class Volume
 {

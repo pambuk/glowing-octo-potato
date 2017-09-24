@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\Volume;
+use App\Items\Volume;
 use Tests\TestCase;
 
 class VolumeTest extends TestCase
