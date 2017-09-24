@@ -15,11 +15,20 @@ class VolumeDisplayTest extends TestCase
         $display = new VolumeDisplay(-1);
         $this->assertEquals('0l', $display->get());
 
+        $display = new VolumeDisplay(0.0);
+        $this->assertEquals('0l', $display->get());
+
         $display = new VolumeDisplay(0);
         $this->assertEquals('0l', $display->get());
 
         $display = new VolumeDisplay(0.5);
-        $this->assertEquals('500ml', $display->get());
+        $this->assertEquals('0.5l', $display->get());
+
+        $display = new VolumeDisplay(0.70);
+        $this->assertEquals('0.7l', $display->get());
+
+        $display = new VolumeDisplay(0.51);
+        $this->assertEquals('510ml', $display->get());
 
         $display = new VolumeDisplay(1);
         $this->assertEquals('1l', $display->get());

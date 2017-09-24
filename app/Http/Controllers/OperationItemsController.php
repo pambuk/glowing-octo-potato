@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\OperationItemCreate;
-use App\Operation;
-use App\OperationItem;
+use App\Http\Requests\OperationItemUpdate;
 use App\Items\Volume;
 use App\Items\Weight;
+use App\Operation;
+use App\OperationItem;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class OperationItemsController extends Controller
@@ -76,14 +76,19 @@ class OperationItemsController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
-     * @return \Illuminate\Http\Response
+     * @param Operation $operation
+     * @param OperationItem $item
+     * @param OperationItemUpdate $request
+     * @return RedirectResponse
+     * @throws \Illuminate\Database\Eloquent\MassAssignmentException
      */
-    public function update(Request $request, $id)
+    public function update(Operation $operation, OperationItem $item, OperationItemUpdate $request): RedirectResponse
     {
-        //
+        $item->fill($request->all());
+        $this->addVolumeWeight($item, $request->input('volume_weight'));
+        $item->save();
+
+        return redirect(route('operations.show', ['operation' => $operation]));
     }
 
     /**
