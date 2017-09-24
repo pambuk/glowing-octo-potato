@@ -106,7 +106,7 @@ class OperationItemsController extends Controller
             $item->delete();
         }
 
-        return redirect()->back();
+        return redirect(route('operations.show', ['operation' => $operation]));
     }
 
     /**

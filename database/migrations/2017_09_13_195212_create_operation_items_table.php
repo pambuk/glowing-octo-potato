@@ -21,8 +21,8 @@ class CreateOperationItemsTable extends Migration
 
             $table->string('description');
             $table->integer('value')->default(0);
-            $table->unsignedInteger('quantity')->nullable();
-            $table->unsignedInteger('volume')->nullable();
+            $table->unsignedInteger('quantity')->default(1);
+            $table->float('volume')->nullable();
             $table->unsignedInteger('weight')->nullable();
 
             $table->timestamps();
