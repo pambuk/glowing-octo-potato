@@ -3,7 +3,6 @@
 namespace App;
 
 use App\Items\VolumeDisplay;
-use App\Items\Weight;
 use App\Items\WeightDisplay;
 use Illuminate\Database\Eloquent\Model;
 
