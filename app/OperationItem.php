@@ -2,6 +2,9 @@
 
 namespace App;
 
+use App\Items\VolumeDisplay;
+use App\Items\Weight;
+use App\Items\WeightDisplay;
 use Illuminate\Database\Eloquent\Model;
 
 class OperationItem extends Model
@@ -26,16 +29,12 @@ class OperationItem extends Model
 
     public function getVolumeWeightAttribute()
     {
-        // @todo add WeightDisplay, VolumeDisplay
+        if (null !== $this->weight) {
+            return (new WeightDisplay($this->weight))->get();
+        }
 
-//        $weight = new Weight($this->weight);
-//        if ($weight->isValid()) {
-//            return $weight->get();
-//        }
-//
-//        $volume = new Volume($this->volume);
-//        if ($volume->isValid()) {
-//            return $volume->get();
-//        }
+        if (null !== $this->volume) {
+            return (new VolumeDisplay($this->volume))->get();
+        }
     }
 }
