@@ -8,6 +8,7 @@ use App\Items\Volume;
 use App\Items\Weight;
 use App\Operation;
 use App\OperationItem;
+use App\Services\OperationItemService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
@@ -33,11 +34,7 @@ class OperationItemsController extends Controller
      */
     public function store(Operation $operation, OperationItemCreate $request): RedirectResponse
     {
-        $item = OperationItem::make($request->validated());
-        $this->addVolumeWeight($item, $request->input('volume_weight'));
-        $operation->items()->save($item);
-
-        // @todo sum items and update operation
+        (new OperationItemService())->store($operation, $request->all());
 
         return redirect(route('operation-items.index', ['operation' => $operation]));
     }
@@ -63,9 +60,7 @@ class OperationItemsController extends Controller
      */
     public function update(Operation $operation, OperationItem $item, OperationItemUpdate $request): RedirectResponse
     {
-        $item->fill($request->all());
-        $this->addVolumeWeight($item, $request->input('volume_weight'));
-        $item->save();
+        (new OperationItemService())->update($operation, $item, $request->all());
 
         return redirect(route('operations.show', ['operation' => $operation]));
     }
@@ -96,20 +91,5 @@ class OperationItemsController extends Controller
     private function canBeDestroyed(Operation $operation, OperationItem $item): bool
     {
         return $item->operation_id === $operation->id && $operation->user_id === \Auth::user()->id;
-    }
-
-    private function addVolumeWeight(OperationItem $item, ?string $input): void
-    {
-        if (null !== $input) {
-            $weight = new Weight($input);
-            if ($weight->isValid()) {
-                $item->weight = $weight->get();
-            }
-
-            $volume = new Volume($input);
-            if ($volume->isValid()) {
-                $item->volume = $volume->get();
-            }
-        }
     }
 }
