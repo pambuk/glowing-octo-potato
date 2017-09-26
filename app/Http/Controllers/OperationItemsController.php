@@ -35,7 +35,6 @@ class OperationItemsController extends Controller
     public function store(Operation $operation, OperationItemCreate $request): RedirectResponse
     {
         (new OperationItemService())->store($operation, $request->all());
-
         return redirect(route('operation-items.index', ['operation' => $operation]));
     }
 
@@ -77,7 +76,8 @@ class OperationItemsController extends Controller
     {
         /** @var OperationItem $item */
         if ($this->canBeDestroyed($operation, $item)) {
-            $item->delete();
+            $itemsService = new OperationItemService();
+            $itemsService->destroy($operation, $item);
         }
 
         return redirect(route('operations.show', ['operation' => $operation]));
