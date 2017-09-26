@@ -1,5 +1,3 @@
-<input type="hidden" name="operation_item_id" value="{{ $item->id }}"/>
-
 @include('form.input', ['label' => 'Amount', 'name' => 'value', 'required' => true, 'value' => $item->value])
 @include('form.input', ['label' => 'Description', 'name' => 'description', 'value' => $item->description,])
 

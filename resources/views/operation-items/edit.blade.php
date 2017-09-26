@@ -15,13 +15,14 @@
 
         @include('form.errors')
 
-        <form method="post" action="{{ route('operation-items.store', ['operation' => $operation]) }}">
+        <form method="post" action="{{ route('operation-items.update', ['operation' => $operation, 'item' => $item]) }}">
 
             {{ csrf_field() }}
+            {{ method_field('PUT') }}
 
             @include('operation-items.inputs-edit')
 
-            <button type="submit" class="btn btn-default">Add</button>
+            <button type="submit" class="btn btn-default">Save</button>
         </form>
     </div>
 

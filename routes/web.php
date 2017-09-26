@@ -32,4 +32,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('operation-items/{operation}/delete/{item}',
         'OperationItemsController@destroy')->name('operation-items.destroy');
     Route::get('operation-item/{operation}/edit/{item}', 'OperationItemsController@edit')->name('operation-items.edit');
+    Route::put('operation-item/{operation}/edit/{item}',
+        'OperationItemsController@update')->name('operation-items.update');
+
+    Route::get('test', function () {
+
+    });
 });
