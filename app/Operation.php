@@ -21,13 +21,15 @@ class Operation extends Model
 
     public function setValueAttribute($value)
     {
+        $value = str_replace(',', '.', $value);
+
         if ($this->type === self::TYPE_INCOME && $value < 0) {
             $value = abs($value);
         } elseif ($this->type !== self::TYPE_INCOME && $value > 0) {
             $value *= -1;
         }
 
-        $this->attributes['value'] = $value * 100;
+        $this->attributes['value'] = (int) ($value * 100);
     }
 
     public function getOperationDateAttribute($value)

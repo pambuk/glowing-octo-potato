@@ -23,7 +23,8 @@ class OperationItem extends Model
 
     public function setValueAttribute($value)
     {
-        $this->attributes['value'] = $value * 100;
+        $value = str_replace(',', '.', $value);
+        $this->attributes['value'] = (int) ($value * 100);
     }
 
     public function getVolumeWeightAttribute()

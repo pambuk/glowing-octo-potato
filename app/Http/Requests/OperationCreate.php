@@ -15,7 +15,7 @@ class OperationCreate extends FormRequest
     {
         return [
             'type' => 'required',
-            'value' => 'required|numeric',
+            'value' => 'required|regex:"[0-9]+[.,]?[0-9]*"',
             'operation_source_id' => 'nullable|sometimes|exists:operation_sources,id',
         ];
     }

@@ -25,7 +25,7 @@ class OperationItemCreate extends FormRequest
     {
         return [
             'description' => 'required',
-            'value' => 'required|numeric',
+            'value' => 'required|regex:"[0-9]+[.,]?[0-9]*"',
             'operation_id' => 'required|exists:operations,id',
         ];
     }
