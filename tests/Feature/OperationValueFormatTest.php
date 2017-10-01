@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Enums\OperationTypes;
 use App\Operation;
 use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -19,7 +20,7 @@ class OperationValueFormatTest extends TestCase
     {
         $user = factory(User::class)->create();
         $operation = factory(Operation::class)->make([
-            'user_id' => $user->id, 'value' => '12,50', 'type' => Operation::TYPE_RECEIPT,
+            'user_id' => $user->id, 'value' => '12,50', 'type' => OperationTypes::RECEIPT,
         ]);
 
         $this->be($user);

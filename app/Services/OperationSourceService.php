@@ -2,6 +2,7 @@
 namespace App\Services;
 
 use App\OperationSource;
+use App\User;
 
 class OperationSourceService
 {
@@ -16,5 +17,12 @@ class OperationSourceService
     public function get()
     {
         return $this->query->get();
+    }
+
+    public function create(User $user, $data)
+    {
+        OperationSource::create(array_merge([
+            'owner_id' => $user->id,
+        ], $data));
     }
 }

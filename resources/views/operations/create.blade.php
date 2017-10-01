@@ -20,54 +20,76 @@
         @if(isset($id))
             <form method="post" action="{{ route('operations.update', ['operation' => $id]) }}">
                 {{ method_field('PUT') }}
-        @else
-            <form method="post">
-        @endif
+                @else
+                    <form method="post">
+                        @endif
 
-                {{ csrf_field() }}
+                        {{ csrf_field() }}
 
-                @include('form.radio', ['name' => 'type', 'required' => true, 'selected' => old('type') ?? $type ?? '', 'options' => [
-                    ['label' => 'Receipt', 'value' => \App\Operation::TYPE_RECEIPT],
-                    ['label' => 'Expense', 'value' => \App\Operation::TYPE_EXPENSE],
-                    ['label' => 'Income', 'value' => \App\Operation::TYPE_INCOME],
-                ]])
-                @include('form.input', ['label' => 'Amount', 'name' => 'value', 'required' => true, 'value' => $value ?? null])
-                @include('form.input', [
-                    'label' => 'Date', 'name' => 'operation_date',
-                    'value' => $operation_date ?? \Carbon\Carbon::now()->toDateString(),
-                    'type' => 'date',
-                ])
-                @include('form.input', ['label' => 'Description', 'name' => 'description', 'value' => $description ?? ''])
+                        @include('form.radio', ['name' => 'type', 'required' => true, 'selected' => old('type') ?? $type ?? '', 'options' => [
+                            ['label' => 'Receipt', 'value' => \App\Enums\OperationTypes::RECEIPT],
+                            ['label' => 'Expense', 'value' => \App\Enums\OperationTypes::EXPENSE],
+                            ['label' => 'Income', 'value' => \App\Enums\OperationTypes::INCOME],
+                        ]])
+                        @include('form.input', ['label' => 'Amount', 'name' => 'value', 'required' => true, 'value' => $value ?? null])
+                        @include('form.input', [
+                            'label' => 'Date', 'name' => 'operation_date',
+                            'value' => $operation_date ?? \Carbon\Carbon::now()->toDateString(),
+                            'type' => 'date',
+                        ])
+                        @include('form.input', ['label' => 'Description', 'name' => 'description', 'value' => $description ?? ''])
 
-                <hr/>
+                        <hr/>
 
-                @include('form.select', [
-                    'label' => 'Operation source', 'name' => 'operation_source_id', 'options' => $operationSourceOptions,
-                    'selected' => old('operation_source_id') ?? $operation_source_id ?? ''
-                ])
+                        <div class="row">
+                            <div class="col-lg-6">
+                                @include('form.select', [
+                                    'label' => 'Operation source', 'name' => 'operation_source_id', 'options' => $operationSourceOptions,
+                                    'selected' => old('operation_source_id') ?? $operation_source_id ?? ''
+                                ])
+                            </div>
+                            <div class="col-lg-6">
+                                {{--@include('form.input', [--}}
+                                    {{--'label' => 'Add source', 'name' => 'operation_source.name'--}}
+                                {{--])--}}
+                                <div class="form-group">
+                                    <label for="operation_sources.name">Add source</label>
+                                    <input
+                                            name="operation_sources.name" value="" list="sources"
+                                            class="form-control" id="operation_sources.name">
+                                    <datalist id="sources">
+                                        <option data-operation-id="1">Carrefour Galena, Jaworzno</option>
+                                        {{--<option value="Carrefour Galena, Jaworzno"></option>--}}
+                                        {{--<option value="Carrefour Osiedle Stałe, Jaworzno"></option>--}}
+                                        {{--<option value="Carrefour (Albert), Jaworzno"></option>--}}
+                                    </datalist>
+                                </div>
+                            </div>
+                        </div>
 
-                <button type="submit" class="btn btn-default">
-                    @if(isset($id))
-                        Update
-                    @else
-                        Add
-                    @endif
-                </button>
-            </form>
+                        <button type="submit" class="btn btn-default">
+                            @if(isset($id))
+                                Update
+                            @else
+                                Add
+                            @endif
+                        </button>
+                    </form>
     </div>
 
     @if (isset($id))
-    <div class="col-lg-5">
-        <h1>
-            Items
+        <div class="col-lg-5">
+            <h1>
+                Items
 
-            <a href="/operation-items/{{ $id }}/index" type="button" class="btn btn-default pull-right" aria-label="Right Align">
-                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add
-            </a>
-        </h1>
+                <a href="/operation-items/{{ $id }}/index" type="button" class="btn btn-default pull-right"
+                   aria-label="Right Align">
+                    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add
+                </a>
+            </h1>
 
-        @include('operation-items.list')
+            @include('operation-items.list')
 
-    </div>
+        </div>
     @endif
 @endsection

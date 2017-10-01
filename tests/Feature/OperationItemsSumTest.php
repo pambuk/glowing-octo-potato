@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Enums\OperationTypes;
 use App\Operation;
 use App\OperationItem;
 use App\Services\OperationItemService;
@@ -92,7 +93,7 @@ class OperationItemsSumTest extends TestCase
         /** @var Operation $receipt */
         $receipt = factory(Operation::class)->create([
             'user_id' => $user->id,
-            'type' => Operation::TYPE_RECEIPT,
+            'type' => OperationTypes::RECEIPT,
             'value' => $value,
         ]);
 

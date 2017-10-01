@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Enums\OperationTypes;
 use App\Http\Middleware\VerifyCsrfToken;
 use App\Operation;
 use App\OperationItem;
@@ -23,7 +24,7 @@ class OperationItemValueFormatTest extends TestCase
         $operation = factory(Operation::class)->create([
             'user_id' => $user->id,
             'value' => 30,
-            'type' => Operation::TYPE_RECEIPT,
+            'type' => OperationTypes::RECEIPT,
         ]);
         $item = factory(OperationItem::class)->make(['value' => '12,50']);
 
