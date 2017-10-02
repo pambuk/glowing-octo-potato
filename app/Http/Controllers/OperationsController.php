@@ -40,12 +40,12 @@ class OperationsController extends Controller
 
     public function store(OperationCreate $request)
     {
-        $source = (new OperationSourceService())->create(\Auth::user(), [
-            'default_operation_type' => $request->input('type'),
-            'name' => $request->input('operation_sources_name'),
-        ]);
+        if (null !== $request->input('operation_sources_name')) {
+            $source = (new OperationSourceService())->create(\Auth::user(), [
+                'default_operation_type' => $request->input('type'),
+                'name' => $request->input('operation_sources_name'),
+            ]);
 
-        if (!$request->has('operation_source_id') || null === $request->input('operation_source_id')) {
             $data['operation_source_id'] = $source->id;
         } else {
             $data['operation_source_id'] = $request->input('operation_source_id');
