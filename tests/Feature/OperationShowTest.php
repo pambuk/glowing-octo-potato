@@ -17,7 +17,7 @@ class OperationShowTest extends TestCase
     public function it_should_fill_all_inputs()
     {
         $user = factory(User::class)->create();
-        $operationSource = factory(OperationSource::class)->create();
+        $operationSource = factory(OperationSource::class)->create(['owner_id' => $user->id]);
         /** @var Operation $operation */
         $operation = factory(Operation::class)->create([
             'user_id' => $user->id,

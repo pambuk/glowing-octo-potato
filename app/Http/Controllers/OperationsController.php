@@ -7,6 +7,7 @@ use App\Operation;
 use App\OperationSource;
 use App\Services\OperationService;
 use App\Services\OperationSourceService;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
@@ -33,15 +34,27 @@ class OperationsController extends Controller
 
     public function create()
     {
-        $sources = $this->getOperationSourceOptions();
+        $sources = $this->getOperationSourceOptions(\Auth::user());
         return view('operations.create', ['operationSourceOptions' => $sources]);
     }
 
     public function store(OperationCreate $request)
     {
+        if (null !== $request->input('operation_sources_name')) {
+            $source = (new OperationSourceService())->create(\Auth::user(), [
+                'default_operation_type' => $request->input('type'),
+                'name' => $request->input('operation_sources_name'),
+            ]);
+
+            $data['operation_source_id'] = $source->id;
+        } else {
+            $data['operation_source_id'] = $request->input('operation_source_id');
+        }
+
         $operation = (new OperationService())->create(array_merge($request->all(), [
             'user_id' => \Auth::user()->id,
             'description' => $request->input('description') ?: ucfirst($request->input('type')),
+            'operation_source_id' => $data['operation_source_id'],
         ]));
 
         return redirect(route('operations.show', ['operation' => $operation->id]));
@@ -50,7 +63,7 @@ class OperationsController extends Controller
     public function show(Operation $operation)
     {
         $operation->load('items');
-        $sources = $this->getOperationSourceOptions();
+        $sources = $this->getOperationSourceOptions(\Auth::user());
 
         return view('operations.create', array_merge(
             $operation->toArray(), ['operationSourceOptions' => $sources->toArray()])
@@ -75,11 +88,14 @@ class OperationsController extends Controller
     }
 
     /**
+     * @param User $user
      * @return Collection
      */
-    private function getOperationSourceOptions(): Collection
+    private function getOperationSourceOptions(User $user): Collection
     {
-        return (new OperationSourceService())->get()->transform(function (OperationSource $item) {
+        return (new OperationSourceService())
+            ->byOwner($user)
+            ->get()->transform(function (OperationSource $item) {
             return [
                 'value' => $item->id,
                 'label' => $item->name,

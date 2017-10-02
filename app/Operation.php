@@ -2,15 +2,12 @@
 
 namespace App;
 
+use App\Enums\OperationTypes;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Operation extends Model
 {
-    public const TYPE_RECEIPT = 'receipt';
-    public const TYPE_INCOME = 'income';
-    public const TYPE_EXPENSE = 'expense';
-
     protected $fillable = ['user_id', 'value', 'operation_date', 'type', 'description', 'operation_source_id', ];
     protected $dates = ['created_at', 'updated_at', 'operation_date'];
 
@@ -21,13 +18,15 @@ class Operation extends Model
 
     public function setValueAttribute($value)
     {
-        if ($this->type === self::TYPE_INCOME && $value < 0) {
+        $value = str_replace(',', '.', $value);
+
+        if ($this->type === OperationTypes::INCOME && $value < 0) {
             $value = abs($value);
-        } elseif ($this->type !== self::TYPE_INCOME && $value > 0) {
+        } elseif ($this->type !== OperationTypes::INCOME && $value > 0) {
             $value *= -1;
         }
 
-        $this->attributes['value'] = $value * 100;
+        $this->attributes['value'] = (int) ($value * 100);
     }
 
     public function getOperationDateAttribute($value)
