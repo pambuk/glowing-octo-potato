@@ -15,7 +15,7 @@ class ModifyOperationSourcesAddVisibilityDefaultOperation extends Migration
     {
         Schema::table('operation_sources', function (Blueprint $table) {
             $table->enum('visibility', ['private', 'public'])->default('private');
-            $table->unsignedInteger('default_operation_type')->nullable();
+            $table->string('default_operation_type')->nullable();
         });
     }
 

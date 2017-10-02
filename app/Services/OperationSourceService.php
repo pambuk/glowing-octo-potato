@@ -19,10 +19,20 @@ class OperationSourceService
         return $this->query->get();
     }
 
-    public function create(User $user, $data)
+    public function create(User $user, $data): OperationSource
     {
-        OperationSource::create(array_merge([
-            'owner_id' => $user->id,
-        ], $data));
+        $source = new OperationSource();
+        $source->name = $data['name'];
+        $source->default_operation_type = $data['default_operation_type'];
+        $source->owner_id = $user->id;
+        $source->save();
+
+        return $source;
+    }
+
+    public function byOwner(User $user)
+    {
+        $this->query->where('owner_id', $user->id);
+        return $this;
     }
 }
