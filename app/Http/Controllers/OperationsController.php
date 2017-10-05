@@ -64,9 +64,10 @@ class OperationsController extends Controller
     {
         $operation->load('items');
         $sources = $this->getOperationSourceOptions(\Auth::user());
+        $publicSources = OperationSource::where('visibility', OperationSource::VISIBILITY_PUBLIC)->get();
 
         return view('operations.create', array_merge(
-            $operation->toArray(), ['operationSourceOptions' => $sources->toArray()])
+            $operation->toArray(), ['operationSourceOptions' => $sources->toArray(), 'publicSources' => $publicSources])
         );
     }
 
