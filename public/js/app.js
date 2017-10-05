@@ -780,14 +780,7 @@ module.exports = __webpack_require__(40);
 /* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-
 __webpack_require__(10);
-
 window.Vue = __webpack_require__(35);
 
 /**
@@ -797,6 +790,7 @@ window.Vue = __webpack_require__(35);
  */
 
 Vue.component('example', __webpack_require__(36));
+Vue.component('operation-list', __webpack_require__(45));
 
 var app = new Vue({
     el: '#app',
@@ -813,18 +807,9 @@ var app = new Vue({
 /* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
-
 window._ = __webpack_require__(11);
-
-/**
- * We'll load jQuery and the Bootstrap jQuery plugin which provides support
- * for JavaScript based Bootstrap features such as modals and tabs. This
- * code may be modified to fit the specific needs of your application.
- */
-
 try {
   window.$ = window.jQuery = __webpack_require__(13);
-
   __webpack_require__(14);
 } catch (e) {}
 
@@ -833,9 +818,7 @@ try {
  * to our Laravel back-end. This library automatically handles sending the
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
-
 window.axios = __webpack_require__(15);
-
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /**
@@ -859,7 +842,6 @@ if (token) {
  */
 
 // import Echo from 'laravel-echo'
-
 // window.Pusher = require('pusher-js');
 
 // window.Echo = new Echo({
@@ -41989,6 +41971,119 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 41 */,
+/* 42 */,
+/* 43 */,
+/* 44 */,
+/* 45 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(37)(
+  /* script */
+  __webpack_require__(46),
+  /* template */
+  __webpack_require__(47),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "C:\\Users\\Wojtek\\Desktop\\www\\git\\Code\\paragony\\resources\\assets\\js\\components\\OperationList.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] OperationList.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4c77064e", Component.options)
+  } else {
+    hotAPI.reload("data-v-4c77064e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 46 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            items: this._items
+        };
+    },
+    mounted: function mounted() {
+        console.log('OperationList', this);
+    },
+
+    props: {
+        _items: {}
+    }
+});
+
+/***/ }),
+/* 47 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function(){},staticRenderFns:[]}
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-4c77064e", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
