@@ -1,6 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
+
+    <div class="container col-lg-11 col-lg-offset-1">
+        <ol class="breadcrumb">
+            <li><a href="{{ route('operations.index') }}">Operations</a></li>
+            <li><a href="{{ route('operations.show', ['operation' => $operation]) }}">{{ $operation->description }}</a></li>
+            <li class="active">Add operation item</li>
+        </ol>
+    </div>
+
     <div class="container col-lg-6 col-lg-offset-1">
         <h1>Add operation item</h1>
 
