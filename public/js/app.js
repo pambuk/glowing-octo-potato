@@ -42053,10 +42053,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['items']
+    props: ['items'],
+    computed: {
+        summedValues: function summedValues(vm) {
+            return vm.items.reduce(function (sum, item) {
+                return Number.parseFloat(sum) + Number.parseFloat(item.value);
+            }, 0);
+        },
+        sumFormattedAsCurrency: function sumFormattedAsCurrency(vm) {
+            return vm.summedValues.toLocaleString('pl-PL', { style: 'currency', currency: 'PLN' });
+        }
+    }
 });
 
 /***/ }),
@@ -42091,7 +42100,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_c('i', {
       staticClass: "glyphicon glyphicon-trash"
     })])])])
-  })), _vm._v(" "), _vm._m(1)])
+  })), _vm._v(" "), _c('tfoot', [_c('tr', [_vm._m(1), _vm._v(" "), _c('td', {
+    staticStyle: {
+      "text-align": "right"
+    },
+    attrs: {
+      "colspan": "2"
+    }
+  }, [_c('strong', [_vm._v(_vm._s(_vm.sumFormattedAsCurrency))])])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('thead', [_c('tr', [_c('th', [_vm._v("Description")]), _vm._v(" "), _c('th', [_vm._v("Type")]), _vm._v(" "), _c('th', {
     staticStyle: {
@@ -42099,14 +42115,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("Amount")]), _vm._v(" "), _c('th', [_vm._v("Options")])])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('tfoot', [_c('tr', [_c('td', [_c('strong', [_vm._v("Total: ")])]), _vm._v(" "), _c('td', {
-    staticStyle: {
-      "text-align": "right"
-    },
-    attrs: {
-      "colspan": "2"
-    }
-  })])])
+  return _c('td', [_c('strong', [_vm._v("Total: ")])])
 }]}
 module.exports.render._withStripped = true
 if (false) {
