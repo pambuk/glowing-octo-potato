@@ -3,7 +3,9 @@
 namespace Tests\Feature;
 
 use App\Operation;
+use App\Services\OperationService;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
@@ -16,6 +18,7 @@ class OperationIndexTest extends TestCase
      */
     public function it_should_show_user_operations_only()
     {
+        $date = Carbon::now();
         $user = factory(User::class)->create();
         $operation1 = factory(Operation::class)->create(['user_id' => $user->id]);
         $operation2 = factory(Operation::class)->create(['user_id' => $user->id]);
@@ -25,11 +28,14 @@ class OperationIndexTest extends TestCase
 
         $this->be($user);
 
-        $this
-            ->get(route('operations.index'))
-            ->assertSuccessful()
-            ->assertSeeText($operation1->description)
-            ->assertSeeText($operation2->description)
-            ->assertDontSeeText($operation3->description);
+        $operations = (new OperationService())
+            ->byUser(\Auth::user())
+            ->byMonth($date)
+            ->get();
+
+        $this->assertTrue($operations->contains($operation1));
+        $this->assertTrue($operations->contains($operation2));
+        $this->assertFalse($operations->contains($operation3));
+        $this->assertEquals(2, $operations->count());
     }
 }
