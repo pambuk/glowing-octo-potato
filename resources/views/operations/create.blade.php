@@ -49,19 +49,15 @@
                                 ])
                             </div>
                             <div class="col-lg-6">
-                                {{--@include('form.input', [--}}
-                                    {{--'label' => 'Add source', 'name' => 'operation_source.name'--}}
-                                {{--])--}}
                                 <div class="form-group">
                                     <label for="operation_sources.name">Add source</label>
                                     <input
                                             name="operation_sources.name" value="" list="sources"
-                                            class="form-control" id="operation_sources.name">
+                                            class="form-control" id="operation_sources.name" autocomplete="off">
                                     <datalist id="sources">
-                                        <option data-operation-id="1">Carrefour Galena, Jaworzno</option>
-                                        {{--<option value="Carrefour Galena, Jaworzno"></option>--}}
-                                        {{--<option value="Carrefour Osiedle Stałe, Jaworzno"></option>--}}
-                                        {{--<option value="Carrefour (Albert), Jaworzno"></option>--}}
+                                        @foreach($publicSources as $source)
+                                            <option value="{{ $source->name }}"></option>
+                                        @endforeach
                                     </datalist>
                                 </div>
                             </div>
