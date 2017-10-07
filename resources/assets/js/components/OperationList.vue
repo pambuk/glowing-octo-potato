@@ -9,21 +9,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr v-for="item in items" :key="item.id">
-                <td>
-                    <a :href="'/operations/show/' + item.id">{{ item.description }}</a>
-                </td>
-                <td>{{ item.type }}</td>
-                <td style="text-align: right">{{ item.value }}</td>
-                <td>
-                    <button
-                            class="btn btn-sm"
-                            @click.prevent="confirmAction('/operations/delete/' + item.id)"
-                            style="cursor: pointer">
-                        <i class="glyphicon glyphicon-trash"></i>
-                    </button>
-                </td>
-            </tr>
+            <operation-list-item v-for="item in items" :item="item"></operation-list-item>
         </tbody>
         <tfoot>
             <tr>
@@ -31,6 +17,7 @@
                 <td colspan="2" style="text-align: right">
                      <strong>{{ sumFormattedAsCurrency }}</strong>
                 </td>
+                <td></td>
             </tr>
         </tfoot>
     </table>
