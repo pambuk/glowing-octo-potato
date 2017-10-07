@@ -10,13 +10,16 @@ window.Vue = require('vue');
 Vue.component('example', require('./components/Example.vue'));
 Vue.component('operation-list', require('./components/OperationList.vue'));
 
-const app = new Vue({
-    el: '#app',
+Vue.mixin({
     methods: {
-        confirmAction: function(uri) {
+        confirmAction: (uri) => {
             if (confirm('Are you sure?')) {
                 window.location.href = uri;
-            }
+            }            
         }
     }
+});
+
+const app = new Vue({
+    el: '#app'
 });
