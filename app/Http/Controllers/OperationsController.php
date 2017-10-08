@@ -35,7 +35,8 @@ class OperationsController extends Controller
     public function create()
     {
         $sources = $this->getOperationSourceOptions(\Auth::user());
-        return view('operations.create', ['operationSourceOptions' => $sources]);
+        $publicSources = OperationSource::where('visibility', OperationSource::VISIBILITY_PUBLIC)->get();
+        return view('operations.create', ['operationSourceOptions' => $sources, 'publicSources' => $publicSources]);
     }
 
     public function store(OperationCreate $request)
