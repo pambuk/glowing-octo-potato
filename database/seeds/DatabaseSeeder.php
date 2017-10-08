@@ -12,11 +12,8 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call(FirstUser::class);
-
-        if (env('APP_ENV') === 'local') {
-            $this->call(OperationSeeder::class);
-            $this->call(OperationSourceSeeder::class);
-            $this->call(OperationItemSeeder::class);
-        }
+        $this->call(OperationSeeder::class);
+        $this->call(OperationSourceSeeder::class);
+        $this->call(OperationItemSeeder::class);
     }
 }
