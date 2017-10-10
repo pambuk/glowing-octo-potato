@@ -2,29 +2,29 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\OperationItem;
-use Cowsayphp\Cow;
-use Cowsayphp\Farm;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\OperationItem;
+use App\Services\OperationSourceService;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\View\View;
 
 class OperationSourcesController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function index()
+    public function index(): View
     {
-        $cow = Farm::create(Cow::class);
-        return '<pre>'. $cow->say('Coming soon...') .'</pre>';
+        $sources = (new OperationSourceService())->get();
+        return view('admin.operation-sources.index', ['sources' => $sources]);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -35,7 +35,7 @@ class OperationSourcesController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -46,7 +46,7 @@ class OperationSourcesController extends Controller
      * Display the specified resource.
      *
      * @param  \App\OperationItem  $operationItem
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show(OperationItem $operationItem)
     {
@@ -57,7 +57,7 @@ class OperationSourcesController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\OperationItem  $operationItem
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit(OperationItem $operationItem)
     {
@@ -69,7 +69,7 @@ class OperationSourcesController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\OperationItem  $operationItem
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, OperationItem $operationItem)
     {
@@ -80,7 +80,7 @@ class OperationSourcesController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\OperationItem  $operationItem
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy(OperationItem $operationItem)
     {

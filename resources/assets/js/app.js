@@ -5,6 +5,8 @@ Vue.component('example', require('./components/Example.vue'));
 Vue.component('operation-list', require('./components/OperationList.vue'));
 Vue.component('operation-list-item', require('./components/OperationListItem.vue'));
 
+Vue.component('operation-sources', require('./components/Admin/OperationSources.vue'));
+
 Vue.mixin({
     methods: {
         confirmAction: (uri) => {
