@@ -42060,12 +42060,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['item']
@@ -42179,6 +42173,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['items']
@@ -42192,16 +42188,25 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('table', {
     staticClass: "table table-striped"
   }, [_vm._m(0), _vm._v(" "), _c('tbody', _vm._l((_vm.items), function(item) {
-    return _c('tr', [_c('td', [_vm._v(_vm._s(item.name))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(item.visibility))]), _vm._v(" "), _vm._m(1, true)])
+    return _c('tr', [_c('td', [_vm._v(_vm._s(item.name))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(item.visibility))]), _vm._v(" "), _c('td', [_c('button', {
+      staticClass: "btn btn-sm",
+      staticStyle: {
+        "cursor": "pointer"
+      },
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.confirmAction(_vm.route('operations.destroy', {
+            operation: item.id
+          }))
+        }
+      }
+    }, [_c('i', {
+      staticClass: "glyphicon glyphicon-trash"
+    })])])])
   }))])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('thead', [_c('tr', [_c('th', [_vm._v("Name")]), _vm._v(" "), _c('th', [_vm._v("Visibility")]), _vm._v(" "), _c('th', [_vm._v("Options")])])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('td', [_c('button', {
-    staticClass: "btn btn-sm"
-  }, [_c('i', {
-    staticClass: "glyphicon glyphicon-trash"
-  })])])
 }]}
 module.exports.render._withStripped = true
 if (false) {
