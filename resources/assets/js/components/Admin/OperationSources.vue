@@ -9,13 +9,14 @@
         </thead>
         <tbody>
         <tr v-for="item in items">
-            <td>{{ item.name }}</td>
+            <td>
+                <a :href="detailsLink(item)">{{ item.name }}</a>
+            </td>
             <td>{{ item.visibility }}</td>
             <td>
                 <button
-                        class="btn btn-sm"
-                        @click.prevent="confirmAction(route('operations.destroy', {operation: item.id}))"
-                        style="cursor: pointer">
+                        class="btn btn-sm" role="button"
+                        @click.prevent="confirmAction(route('operations.destroy', {operation: item.id}))">
                     <i class="glyphicon glyphicon-trash"></i>
                 </button>
             </td>
@@ -26,6 +27,11 @@
 
 <script>
     export default {
-        props: ['items']
+        props: ['items'],
+        methods: {
+            detailsLink: (item) => {
+                return route('operation-sources.show', {operation_source: item.id});
+            }
+        }
     }
 </script>

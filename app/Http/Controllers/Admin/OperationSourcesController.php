@@ -48,9 +48,9 @@ class OperationSourcesController extends Controller
      * @param  \App\OperationItem  $operationItem
      * @return Response
      */
-    public function show(OperationItem $operationItem)
+    public function show(OperationItem $operation_source)
     {
-        //
+        dd($operation_source);
     }
 
     /**

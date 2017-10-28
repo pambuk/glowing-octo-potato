@@ -42641,9 +42641,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-4c77064e", Component.options)
+    hotAPI.createRecord("data-v-51ce75f6", Component.options)
   } else {
-    hotAPI.reload("data-v-4c77064e", Component.options)
+    hotAPI.reload("data-v-51ce75f6", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true
@@ -42766,7 +42766,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-4c77064e", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-51ce75f6", module.exports)
   }
 }
 
@@ -42806,9 +42806,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-01fc5901", Component.options)
+    hotAPI.createRecord("data-v-ad7896ae", Component.options)
   } else {
-    hotAPI.reload("data-v-01fc5901", Component.options)
+    hotAPI.reload("data-v-ad7896ae", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true
@@ -42894,7 +42894,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-01fc5901", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-ad7896ae", module.exports)
   }
 }
 
@@ -42934,9 +42934,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-e8634650", Component.options)
+    hotAPI.createRecord("data-v-7ed3eba0", Component.options)
   } else {
-    hotAPI.reload("data-v-e8634650", Component.options)
+    hotAPI.reload("data-v-7ed3eba0", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true
@@ -42978,9 +42978,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['items']
+    props: ['items'],
+    methods: {
+        detailsLink: function detailsLink(item) {
+            return route('operation-sources.show', { operation_source: item.id });
+        }
+    }
 });
 
 /***/ }),
@@ -42998,7 +43004,11 @@ var render = function() {
       "tbody",
       _vm._l(_vm.items, function(item) {
         return _c("tr", [
-          _c("td", [_vm._v(_vm._s(item.name))]),
+          _c("td", [
+            _c("a", { attrs: { href: _vm.detailsLink(item) } }, [
+              _vm._v(_vm._s(item.name))
+            ])
+          ]),
           _vm._v(" "),
           _c("td", [_vm._v(_vm._s(item.visibility))]),
           _vm._v(" "),
@@ -43007,7 +43017,7 @@ var render = function() {
               "button",
               {
                 staticClass: "btn btn-sm",
-                staticStyle: { cursor: "pointer" },
+                attrs: { role: "button" },
                 on: {
                   click: function($event) {
                     $event.preventDefault()
@@ -43046,7 +43056,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-e8634650", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-7ed3eba0", module.exports)
   }
 }
 

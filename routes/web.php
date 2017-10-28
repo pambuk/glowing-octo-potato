@@ -37,6 +37,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'admin'], function () {
         Route::get('dashboard', 'Admin\DashboardController@index')->name('admin.dashboard.index');
 
+//        Route::get('operation-sources/{item}', 'Admin\OperationSourcesController@show');
         Route::resource('operation-sources', 'Admin\OperationSourcesController');
     });
 });
