@@ -10,6 +10,8 @@
             </a>
         </h1>
 
-        <operation-sources :items="{{ json_encode($sources) }}"></operation-sources>
+        <router-view></router-view>
+
+        {{--<operation-sources :items="{{ json_encode($sources) }}"></operation-sources>--}}
     </div>
 @endsection

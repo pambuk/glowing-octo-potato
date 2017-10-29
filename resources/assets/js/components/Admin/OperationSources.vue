@@ -9,7 +9,7 @@
         </thead>
         <tbody>
         <operation-sources-item
-                v-for="item in sourceItems"
+                v-for="item in items"
                 :key="item.id" :item="item"
                 v-on:operation-sources:destroy="deleteItem"></operation-sources-item>
         </tbody>
@@ -17,11 +17,23 @@
 </template>
 
 <script>
+    import OperationSourceItem from './OperationSourcesItem.vue';
+
     export default {
-        props: ['items'],
+        components: {
+            'operation-sources-item': OperationSourceItem
+        },
+        mounted() {
+console.log('mounted');
+            // fetch items
+            axios.get(route('api.operation-sources.index')).then((response) => {
+console.log(response);
+                    this.items = response.data;
+                });
+        },
         data() {
             return {
-                sourceItems: this.items
+                items: []
             };
         },
         methods: {
@@ -29,7 +41,7 @@
                 axios
                     .delete(route('operation-sources.destroy', {operation_source: item.id}))
                     .then(() => {
-                        this.sourceItems = _.filter(this.sourceItems, (listItem) => {
+                        this.items = _.filter(this.items, (listItem) => {
                             return item.id !== listItem.id;
                         });
                     });
