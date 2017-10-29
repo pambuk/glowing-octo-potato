@@ -28,7 +28,7 @@
             deleteItem(item) {
                 axios
                     .delete(route('operation-sources.destroy', {operation_source: item.id}))
-                    .then((response) => {
+                    .then(() => {
                         this.sourceItems = _.filter(this.sourceItems, (listItem) => {
                             return item.id !== listItem.id;
                         });
