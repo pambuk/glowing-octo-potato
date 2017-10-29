@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\OperationItem;
+use App\OperationSource;
 use App\Services\OperationSourceService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -48,18 +49,18 @@ class OperationSourcesController extends Controller
      * @param  \App\OperationItem  $operationItem
      * @return Response
      */
-    public function show(OperationItem $operation_source)
+    public function show(OperationSource $operation_source)
     {
-        dd($operation_source);
+//        dd($operation_source);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\OperationItem  $operationItem
+     * @param OperationSource $operationSource
      * @return Response
      */
-    public function edit(OperationItem $operationItem)
+    public function edit(OperationSource $operationSource)
     {
         //
     }
@@ -80,10 +81,11 @@ class OperationSourcesController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\OperationItem  $operationItem
-     * @return Response
      */
-    public function destroy(OperationItem $operationItem)
+    public function destroy(OperationSource $operationSource)
     {
-        //
+        $operationSource->delete();
+
+        return $operationSource;
     }
 }

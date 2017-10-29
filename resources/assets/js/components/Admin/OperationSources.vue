@@ -8,19 +8,10 @@
         </tr>
         </thead>
         <tbody>
-        <tr v-for="item in items">
-            <td>
-                <a :href="detailsLink(item)">{{ item.name }}</a>
-            </td>
-            <td>{{ item.visibility }}</td>
-            <td>
-                <button
-                        class="btn btn-sm" role="button"
-                        @click.prevent="confirmAction(route('operations.destroy', {operation: item.id}))">
-                    <i class="glyphicon glyphicon-trash"></i>
-                </button>
-            </td>
-        </tr>
+        <operation-sources-item
+                v-for="item in sourceItems"
+                :key="item.id" :item="item"
+                v-on:operation-sources:destroy="deleteItem"></operation-sources-item>
         </tbody>
     </table>
 </template>
@@ -28,9 +19,20 @@
 <script>
     export default {
         props: ['items'],
+        data() {
+            return {
+                sourceItems: this.items
+            };
+        },
         methods: {
-            detailsLink: (item) => {
-                return route('operation-sources.show', {operation_source: item.id});
+            deleteItem(item) {
+                axios
+                    .delete(route('operation-sources.destroy', {operation_source: item.id}))
+                    .then((response) => {
+                        this.sourceItems = _.filter(this.sourceItems, (listItem) => {
+                            return item.id !== listItem.id;
+                        });
+                    });
             }
         }
     }

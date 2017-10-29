@@ -42,6 +42,13 @@ Route::group(['middleware' => 'auth'], function () {
     });
 });
 
-Route::get('test', function () {
+if (env('APP_ENV') === 'local') {
+    Route::get('test', function () {
 
-});
+    });
+
+    Route::get('routes', function () {
+        \Illuminate\Support\Facades\Artisan::call('route:list');
+        echo '<pre>' . \Illuminate\Support\Facades\Artisan::output() . '</pre>';
+    });
+}
