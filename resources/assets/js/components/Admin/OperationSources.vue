@@ -24,10 +24,9 @@
             'operation-sources-item': OperationSourceItem
         },
         mounted() {
-console.log('mounted');
-            // fetch items
-            axios.get(route('api.operation-sources.index')).then((response) => {
-console.log(response);
+            axios
+                .get(route('api.operation-sources.index'))
+                .then((response) => {
                     this.items = response.data;
                 });
         },

@@ -24,8 +24,13 @@
 </template>
 
 <script>
+    import OperationListItem from './OperationListItem.vue';
+
     export default {
         props: ['items'],
+        components: {
+            'operation-list-item': OperationListItem
+        },
         computed: {
             summedValues: (vm) => {
                 return vm.items

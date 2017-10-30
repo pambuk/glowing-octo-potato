@@ -4,16 +4,16 @@ import VueRouter from 'vue-router';
 
 Vue.use(VueRouter);
 
+import App from './components/Admin/App.vue';
 import OperationList from './components/OperationList.vue';
-import OperationListItem from './components/OperationListItem.vue';
+// import OperationListItem from './components/OperationListItem.vue';
 import OperationSources from './components/Admin/OperationSources.vue';
 // import OperationSourcesItem from './components/Admin/OperationSourcesItem.vue';
 import SourceItemEdit from './components/Admin/SourceItemEdit.vue';
 
 Vue.component('operation-list', OperationList);
-Vue.component('operation-list-item', OperationListItem);
+// Vue.component('operation-list-item', OperationListItem);
 Vue.component('operation-sources', OperationSources);
-// Vue.component('operation-sources-item', OperationSourcesItem);
 Vue.component('source-item-edit', SourceItemEdit);
 
 const routes = [
@@ -36,5 +36,8 @@ Vue.mixin({
 
 const app = new Vue({
     el: '#app',
+    components: {
+        App
+    },
     router
 });
