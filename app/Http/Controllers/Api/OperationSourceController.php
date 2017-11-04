@@ -31,7 +31,7 @@ class OperationSourceController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -42,7 +42,7 @@ class OperationSourceController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\OperationSource  $operationSource
+     * @param  OperationSource $operationSource
      * @return \Illuminate\Http\Response
      */
     public function show(OperationSource $operationSource)
@@ -53,34 +53,40 @@ class OperationSourceController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\OperationSource  $operationSource
+     * @param  OperationSource $operationSource
      * @return \Illuminate\Http\Response
      */
     public function edit(OperationSource $operationSource)
     {
-        //
+        return $operationSource;
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\OperationSource  $operationSource
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request $request
+     * @param  OperationSource $operationSource
+     * @return OperationSource
+     * @throws \Illuminate\Database\Eloquent\MassAssignmentException
      */
-    public function update(Request $request, OperationSource $operationSource)
+    public function update(Request $request, OperationSource $operationSource): OperationSource
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+        ]);
+        $operationSource->fill($request->all())->save();
+
+        return $operationSource;
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\OperationSource  $operationSource
+     * @param  OperationSource $operationSource
      * @return \Illuminate\Http\Response
      */
     public function destroy(OperationSource $operationSource)
     {
-        //
+        return response()->json(['removed' => $operationSource->delete()]);
     }
 }

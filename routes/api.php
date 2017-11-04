@@ -21,6 +21,8 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::resource('operation-sources', 'Api\OperationSourceController', [
         'names' => [
             'index' => 'api.operation-sources.index',
+            'update' => 'api.operation-sources.update',
+            'edit' => 'api.operation-sources.edit',
         ]
     ]);
 });
