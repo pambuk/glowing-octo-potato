@@ -16,7 +16,8 @@
         props: ['item'],
         methods: {
             detailsLink() {
-                return route('operation-sources.show', {operation_source: this.item.id});
+//                return route('operation-sources.show', {operation_source: this.item.id});
+                return '/admin/#/operation-sources/' + this.item.id;
             },
             deleteItem() {
                 if (confirm('Are you sure?')) {

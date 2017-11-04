@@ -43,7 +43,8 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="{{ route('operation-sources.index') }}">Operation Sources</a>
+{{--                                    <a href="{{ route('operation-sources.index') }}">Operation Sources</a>--}}
+                                    <a href="/admin/#/operation-sources">Operation Sources</a>
                                 </li>
                             </ul>
                         </li>
