@@ -6,6 +6,21 @@
                 <label for="name">Name</label>
                 <input type="text" class="form-control" id="name" v-model="item.name">
             </div>
+            <div class="">
+                <label for="">Visibility</label>
+                <div class="radio">
+                    <label>
+                        <input v-model="item.visibility" type="radio" name="visibility" value="public">
+                        Public
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input v-model="item.visibility" type="radio" name="visibility" value="private">
+                        Private
+                    </label>
+                </div>
+            </div>
             <button class="btn btn-default">Save</button>
         </form>
     </div>
