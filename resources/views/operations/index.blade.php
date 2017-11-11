@@ -5,7 +5,7 @@
         <h1>
             Operations for {{ $date->format('F Y') }}
 
-            <a href="/operations/create" type="button" class="btn btn-default pull-right" aria-label="Left Align">
+            <a href="/operations/create" type="button" class="btn btn-default pull-right" aria-label="Right Align">
                 <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add
             </a>
         </h1>

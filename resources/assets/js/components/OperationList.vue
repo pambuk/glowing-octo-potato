@@ -9,7 +9,7 @@
             </tr>
         </thead>
         <tbody>
-            <operation-list-item v-for="item in items" :item="item"></operation-list-item>
+            <operation-list-item v-for="item in items" :item="item" :key="item.id"></operation-list-item>
         </tbody>
         <tfoot>
             <tr>
@@ -24,8 +24,13 @@
 </template>
 
 <script>
+    import OperationListItem from './OperationListItem.vue';
+
     export default {
         props: ['items'],
+        components: {
+            'operation-list-item': OperationListItem
+        },
         computed: {
             summedValues: (vm) => {
                 return vm.items

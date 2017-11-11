@@ -8,7 +8,7 @@
         <td>
             <button
                     class="btn btn-sm"
-                    @click.prevent="confirmAction('/operations/delete/' + item.id)"
+                    @click.prevent="confirmAction(route('operations.destroy', {operation: item.id}))"
                     style="cursor: pointer">
                 <i class="glyphicon glyphicon-trash"></i>
             </button>
