@@ -2,10 +2,6 @@
     <div>
         <h1>
             Operation sources
-
-            <a href="" type="button" class="btn btn-default pull-right" aria-label="Right Align">
-                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add
-            </a>
         </h1>
         <table class="table table-striped">
             <thead>

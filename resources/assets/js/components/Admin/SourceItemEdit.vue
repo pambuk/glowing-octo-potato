@@ -1,5 +1,14 @@
 <template>
     <div class="container">
+
+
+        <!--<div class="container col-lg-11 col-lg-offset-1">-->
+            <ol class="breadcrumb">
+                <li><router-link to="/operation-sources">Operations sources</router-link></li>
+                <li class="active">Edit operation item</li>
+            </ol>
+        <!--</div>-->
+
         <h1>Edit source</h1>
         <form @submit.prevent="saveSource">
             <div class="form-group">
