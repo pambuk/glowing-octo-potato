@@ -17,8 +17,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => 'auth'], function () {
+    Route::get('/home', 'HomeController@index')->name('home');
     Route::get('operations', 'OperationsController@index')->name('operations.index');
     Route::get('operations/create', 'OperationsController@create')->name('operations.create');
     Route::post('operations/create', 'OperationsController@store')->name('operations.store');
@@ -33,8 +33,25 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('operation-item/{operation}/edit/{item}', 'OperationItemsController@edit')->name('operation-items.edit');
     Route::put('operation-item/{operation}/edit/{item}',
         'OperationItemsController@update')->name('operation-items.update');
+
+    Route::group(['prefix' => 'admin'], function () {
+        Route::get('/', function () {
+            return view('admin.dashboard.index');
+        });
+
+        Route::get('dashboard', 'Admin\DashboardController@index')->name('admin.dashboard.index');
+
+        Route::resource('operation-sources', 'Admin\OperationSourcesController');
+    });
 });
 
-Route::get('test', function () {
-    
-});
+if (env('APP_ENV') === 'local') {
+    Route::get('test', function () {
+
+    });
+
+    Route::get('routes', function () {
+        \Illuminate\Support\Facades\Artisan::call('route:list');
+        echo '<pre>' . \Illuminate\Support\Facades\Artisan::output() . '</pre>';
+    });
+}

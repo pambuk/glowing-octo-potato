@@ -37,6 +37,17 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         <li><a href="/operations">Operations</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+{{--                                    <a href="{{ route('operation-sources.index') }}">Operation Sources</a>--}}
+                                    <a href="/admin/#/operation-sources">Operation Sources</a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -75,6 +86,7 @@
     </div>
 
     <!-- Scripts -->
+    @routes
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>
