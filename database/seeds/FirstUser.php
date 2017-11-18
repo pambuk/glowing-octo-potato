@@ -9,12 +9,15 @@ class FirstUser extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
-        factory(\App\User::class)->create([
+        /** @var \App\User $user */
+        $user = factory(\App\User::class)->create([
             'email' => 'wojtek.zymonik@gmail.com',
             'name' => 'Wojtek',
             'password' => bcrypt(123123),
         ]);
+
+        $user->assign(\App\Enums\UserRoles::ADMIN);
     }
 }

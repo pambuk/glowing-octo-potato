@@ -38,7 +38,7 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <li><a href="/operations">Operations</a></li>
-                    @if (Auth::check() && Auth::user()->isAn('admin'))
+                    @if (Auth::check() && Auth::user()->isAn(\App\Enums\UserRoles::ADMIN))
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span>

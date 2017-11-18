@@ -26,7 +26,7 @@ if (token) {
 }
 
 window.axios.defaults.baseURL = 'http://paragony.app';
-window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + 'test';
+// window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + 'test';
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
