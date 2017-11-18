@@ -34,11 +34,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('operation-item/{operation}/edit/{item}',
         'OperationItemsController@update')->name('operation-items.update');
 
-    Route::group(['prefix' => 'admin'], function () {
+    Route::group(['middleware' => 'role:admin', 'prefix' => 'admin'], function () {
         Route::get('/', function () {
             return view('admin.dashboard.index');
         });
-
         Route::get('dashboard', 'Admin\DashboardController@index')->name('admin.dashboard.index');
 
         Route::resource('operation-sources', 'Admin\OperationSourcesController');

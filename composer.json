@@ -12,6 +12,7 @@
         "laravel/tinker": "~1.0",
         "phpmetrics/phpmetrics": "^2.3",
         "rollbar/rollbar-laravel": "^2.2",
+        "silber/bouncer": "v1.0.0-beta.4",
         "tightenco/ziggy": "^0.4.1"
     },
     "require-dev": {
