@@ -6,6 +6,31 @@ use App\Enums\OperationTypes;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Operation
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property int $value
+ * @property \Carbon\Carbon $operation_date
+ * @property string $type
+ * @property string|null $description
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @property int|null $operation_source_id
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\OperationItem[] $items
+ * @property-read \App\OperationSource $operationSource
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Operation whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Operation whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Operation whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Operation whereOperationDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Operation whereOperationSourceId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Operation whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Operation whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Operation whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Operation whereValue($value)
+ * @mixin \Eloquent
+ */
 class Operation extends Model
 {
     protected $fillable = ['user_id', 'value', 'operation_date', 'type', 'description', 'operation_source_id', ];

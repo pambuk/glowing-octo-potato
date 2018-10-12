@@ -68,7 +68,8 @@ class OperationsController extends Controller
         $publicSources = OperationSource::where('visibility', OperationSource::VISIBILITY_PUBLIC)->get();
 
         return view('operations.create', array_merge(
-            $operation->toArray(), ['operationSourceOptions' => $sources->toArray(), 'publicSources' => $publicSources])
+                $operation->toArray(),
+                ['operationSourceOptions' => $sources->toArray(), 'publicSources' => $publicSources])
         );
     }
 
@@ -98,10 +99,10 @@ class OperationsController extends Controller
         return (new OperationSourceService())
             ->byOwner($user)
             ->get()->transform(function (OperationSource $item) {
-            return [
-                'value' => $item->id,
-                'label' => $item->name,
-            ];
-        });
+                return [
+                    'value' => $item->id,
+                    'label' => $item->name,
+                ];
+            });
     }
 }
